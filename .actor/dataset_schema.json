@@ -1,0 +1,85 @@
+{
+  "actorSpecification": 1,
+  "fields": {},
+  "views": {
+    "jobs": {
+      "title": "Jobs",
+      "transformation": {
+        "fields": [
+          "title",
+          "companyName",
+          "company",
+          "source",
+          "isNew",
+          "location",
+          "countryCode",
+          "isRemote",
+          "seniority",
+          "employmentType",
+          "compensation.summary",
+          "publishedAt",
+          "daysOpen",
+          "isStale",
+          "url"
+        ]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "title": {
+            "label": "Title",
+            "format": "text"
+          },
+          "companyName": {
+            "label": "Company",
+            "format": "text"
+          },
+          "source": {
+            "label": "ATS",
+            "format": "text"
+          },
+          "isNew": {
+            "label": "New",
+            "format": "boolean"
+          },
+          "location": {
+            "label": "Location",
+            "format": "text"
+          },
+          "countryCode": {
+            "label": "Country",
+            "format": "text"
+          },
+          "isRemote": {
+            "label": "Remote",
+            "format": "boolean"
+          },
+          "seniority": {
+            "label": "Seniority",
+            "format": "text"
+          },
+          "employmentType": {
+            "label": "Type",
+            "format": "text"
+          },
+          "publishedAt": {
+            "label": "Published",
+            "format": "date"
+          },
+          "url": {
+            "label": "Job URL",
+            "format": "link"
+          },
+          "daysOpen": {
+            "label": "Days open",
+            "format": "number"
+          },
+          "isStale": {
+            "label": "Stale (60d+)",
+            "format": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

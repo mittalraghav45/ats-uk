@@ -1,0 +1,13 @@
+{
+  "actorSpecification": 1,
+  "name": "ats-job-scraper",
+  "title": "ATS Job Scraper — Workday, Oracle, Greenhouse, Lever & 10 More",
+  "description": "Scrape job postings from 14 ATS boards — Workday, Oracle, Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Personio, Breezy, Rippling, Eightfold, Pinpoint, Teamtailor. Unified JSON, salary in USD, tech tags, ghost-job signals, monitor mode. Duplicates & filtered jobs never charged.",
+  "version": "1.4",
+  "buildTag": "latest",
+  "input": "./input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

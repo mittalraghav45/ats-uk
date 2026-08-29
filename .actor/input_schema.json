@@ -1,0 +1,206 @@
+{
+  "title": "ATS Job Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "companies": {
+      "title": "Companies / boards",
+      "type": "array",
+      "description": "One entry per company, in any of three forms — mix them freely.\n\n1. **Careers URL** — paste the link, the ATS is read from the hostname: `https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite`, `https://boards.greenhouse.io/stripe`, `https://acme.breezy.hr`. **Workday and Oracle boards must use this form** (tenant IDs can't be guessed from a company name).\n2. **`ats:slug`** — `greenhouse:stripe`, `lever:leverdemo`, `ashby:openai`, `workable:blueground`, `smartrecruiters:acme`, `recruitee:acme`, `personio:acme`, `breezy:acme`, `rippling:acme`, `eightfold:bayer`, `pinpoint:acme`, `teamtailor:acme`.\n3. **Bare slug** — `stripe` probes all twelve slug-addressable boards and keeps every hit.",
+      "editor": "stringList",
+      "prefill": [
+        "greenhouse:stripe",
+        "ashby:openai",
+        "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite"
+      ]
+    },
+    "query": {
+      "title": "Title keywords",
+      "type": "string",
+      "description": "Only keep jobs whose **title** matches these keywords.\n\nSyntax: **comma = OR**, **space = AND** inside one alternative, **case-insensitive**, **substring** match. `senior engineer, staff engineer` keeps a title containing both \"senior\" and \"engineer\", or both \"staff\" and \"engineer\". Substring means `intern` also matches \"Internal Tools Engineer\" — use a longer word when that matters. Leave empty to keep every title.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "excludeQuery": {
+      "title": "Title keywords to exclude",
+      "type": "string",
+      "description": "**Drop** jobs whose title matches these keywords. Same syntax as **Title keywords** (comma = OR, space = AND, case-insensitive, substring): `intern, staffing agency` drops titles containing \"intern\" **or** containing both \"staffing\" and \"agency\".\n\nApplied after **Title keywords**, so the two combine: keep the engineers, minus the internships. Remember the substring rule — `intern` also drops \"Internal Tools Engineer\"; write `internship` if that is not what you want.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "descriptionQuery": {
+      "title": "Description keywords",
+      "type": "string",
+      "description": "Only keep jobs whose **full description text** matches these keywords. Same syntax as **Title keywords**: **comma = OR**, **space = AND** inside one alternative, **case-insensitive**, **substring** match. `kubernetes, terraform` keeps postings whose text mentions either.\n\n**This costs requests.** The description has to be fetched to be searched, so switching this on makes the run do the same work as **Include full description** — on Workday that is **one extra detail request per job**, and on Greenhouse/Workable a heavier payload. The descriptions are *not* added to the output unless you also switch on **Include full description**: the filter runs, the records stay small.\n\nBoards that expose no description cannot match, so their jobs are dropped by this filter.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "descriptionExclude": {
+      "title": "Description keywords to exclude",
+      "type": "string",
+      "description": "**Drop** jobs whose full description text matches these keywords (comma = OR, space = AND, case-insensitive, substring). Useful for the things a title never says: `security clearance, must relocate, unpaid`.\n\nSame request cost as **Description keywords**. Jobs with no description available are **kept** — no text means nothing matched, so there is nothing to exclude.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "seniorityFilter": {
+      "title": "Seniority levels",
+      "type": "string",
+      "description": "Only keep jobs whose **inferred** seniority is in this comma-separated list. Levels: `intern`, `junior`, `mid`, `senior`, `staff`, `principal`, `lead`, `manager`, `director`, `vp`, `cxo`. Example: `senior, staff, principal`.\n\nSeniority is derived from the job title (no ATS publishes it), and it is `null` whenever the title gives no signal — e.g. plain \"Software Engineer\". **Jobs with no inferred seniority are dropped by this filter**, on the assumption that filtering by level means wanting explicit matches. Leave it empty to keep them and read the `seniority` field yourself. Unknown words in the list are ignored.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "technologyFilter": {
+      "title": "Technologies",
+      "type": "string",
+      "description": "Only keep jobs that use at least one of these technologies (comma-separated, case-insensitive). Example: `python, go, kubernetes`.\n\nTechnologies are **detected** from the job title and — when it was fetched — the description, against a curated dictionary of ~280 languages, frameworks, databases, cloud and infra tools, and practices. Every job carries the result in `technologies`. Detection from a title alone is thin: pair this with **Description keywords** or **Include full description** to search the actual requirements text.\n\n**Jobs where nothing was detected are dropped by this filter**, on the assumption that filtering by stack means wanting explicit matches. Leave it empty to keep them and read the `technologies` field yourself.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "locationFilter": {
+      "title": "Location contains",
+      "type": "string",
+      "description": "Only keep jobs whose location contains this text (case-insensitive). Example: `London` or `Remote`.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "countryFilter": {
+      "title": "Countries",
+      "type": "string",
+      "description": "Only keep jobs in these countries, as comma-separated **ISO-2 codes** (case-insensitive). Example: `de, at, ch` or `us`.\n\nNo ATS publishes a country field, so every job carries a `countryCode` **derived** from its location text: country names in English and in the common native spellings (`Deutschland`, `Nederland`, `Sverige`, `Polska`, `Brasil`), bare ISO-2/ISO-3 codes where a country can actually be meant, and `City, MO`-style US state abbreviations as a last resort. It is `null` whenever the string does not say — `London` is a city in three countries, `Remote` is nowhere, and guessing would be worse than admitting it.\n\n**Only jobs whose country could be determined pass this filter**, so remote-anywhere postings are dropped by it. Leave it empty to keep them and read the `countryCode` field yourself.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "languageFilter": {
+      "title": "Posting languages",
+      "type": "string",
+      "description": "Only keep jobs written in these languages, as comma-separated **ISO 639-1 codes** (case-insensitive). Supported: `en`, `de`, `fr`, `es`, `it`, `nl`, `pt`, `pl`, `sv`, `da`. Example: `en, de`.\n\nThe language is **detected** from the description text by counting each language's most frequent function words — never from the title, which says nothing (\"Senior Product Manager\" is the same string in Berlin and in Boston). It is `null` for postings under ~30 words and for the bilingual ones plenty of EU boards publish.\n\n**This filter needs the description**, so switch on **Include full description** (or use a description filter) — otherwise every job has `language: null`, nothing matches and the run returns nothing. **Jobs whose language could not be determined are dropped by this filter.**",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "remoteOnly": {
+      "title": "Remote jobs only",
+      "type": "boolean",
+      "description": "Keep only jobs flagged remote by the ATS or whose location says remote.",
+      "default": false
+    },
+    "postedAfter": {
+      "title": "Posted after",
+      "type": "string",
+      "description": "ISO date (YYYY-MM-DD). Only keep jobs published/updated after this date. Boards that expose no date keep the job (better safe than silently empty).",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "hasSalary": {
+      "title": "Only jobs with published salary",
+      "type": "boolean",
+      "description": "Keep only jobs where the ATS publishes pay. Lever, Ashby, Recruitee, Breezy and Pinpoint expose it; the others do not.",
+      "default": false
+    },
+    "salaryMin": {
+      "title": "Minimum salary",
+      "type": "integer",
+      "description": "Keep only jobs whose top-of-range pay is at least this much, as an **annual USD equivalent**: converted from the published currency and interval with approximate rates, so a `6000 EUR / month` posting is compared as ~83,000 USD instead of failing a 70,000 floor. The converted figure is published on every job as `compensationAnnualUsd`, next to the untouched raw `compensation`.\n\nJobs are dropped when they cannot be compared: no published pay, a currency outside the ~25 majors in the rate table, or a number whose interval the ATS never stated and that is too small to be a plausible annual salary.",
+      "editor": "number",
+      "minimum": 0,
+      "nullable": true
+    },
+    "maxDaysOpen": {
+      "title": "Max days open",
+      "type": "integer",
+      "description": "Keep only jobs posted within this many days. The classic ghost-job filter: `30` drops anything that has been sitting on the board for a month. Jobs with no date are kept.",
+      "editor": "number",
+      "minimum": 0,
+      "nullable": true
+    },
+    "staleAfterDays": {
+      "title": "Stale threshold (days)",
+      "type": "integer",
+      "description": "How many days open before a job is flagged `isStale: true`. Does not drop anything — it only labels. Default 60.",
+      "editor": "number",
+      "default": 60,
+      "minimum": 1
+    },
+    "monitorMode": {
+      "title": "Monitor mode (scheduled runs)",
+      "type": "string",
+      "description": "Turns this actor into a job **monitor** for scheduled runs. The actor remembers every posting it has already returned, so a daily run reports what actually changed instead of the same board over and over.\n\n- **Off** — every run returns the full board (default; identical to previous versions).\n- **Annotate only** — return everything, but stamp each job with `isNew`, `firstSeenAt`, `repostedCount` and `repostedAt` (the date a posting came back after having been taken down — `null` for everything else).\n- **New jobs only** — return *only* postings not seen in an earlier run. Jobs you already received are **not re-emitted and not charged again**; they only refresh their `lastSeenAt` internally.\n\nUse the same **Monitor ID** on every run of a schedule, or the actor has nothing to compare against. Also switch on **Report removed jobs** to be told when a posting disappears: those records carry the closing date under both names in use, `removedAt` and `closedAt`.",
+      "editor": "select",
+      "enum": [
+        "off",
+        "annotate",
+        "new-only"
+      ],
+      "enumTitles": [
+        "Off — return every job, every run",
+        "Annotate only — return everything, flag what is new",
+        "New jobs only — return just the postings never seen before"
+      ],
+      "default": "off"
+    },
+    "monitorId": {
+      "title": "Monitor ID",
+      "type": "string",
+      "description": "Name of the memory this run reads and writes. Keep it identical across the runs of one schedule; give a different ID to each schedule so two monitors watching different companies never diff against each other. Changing it starts from a blank slate (every job is new again).",
+      "editor": "textfield",
+      "default": "default"
+    },
+    "emitRemoved": {
+      "title": "Report removed jobs",
+      "type": "boolean",
+      "description": "Also output one record per posting that has disappeared from a board since the previous run, marked `status: \"removed\"` with `id`, `title`, `url`, `firstSeenAt` and the closing date under both names in use, `removedAt` and `closedAt`. Removal records are **never charged**. Boards that failed this run produce no removals, so a network blip is never reported as a closed job. Requires a monitor mode other than Off.",
+      "default": false
+    },
+    "includeDescription": {
+      "title": "Include full description",
+      "type": "boolean",
+      "description": "Include descriptionHtml and descriptionText in every record. Off by default to keep items small and runs fast. On Workday this also fetches each job's exact posting date (one extra request per job).\n\nThis switch controls the **output** only. **Description keywords** and **Technologies** fetch the description on their own when they need it, and leaving this off keeps the text out of the records while the filters still run on it.",
+      "default": false
+    },
+    "maxJobsPerCompany": {
+      "title": "Max jobs per company",
+      "type": "integer",
+      "description": "0 = no limit. The form pre-fills 50 so a trial run stays cheap — clear it for complete boards.",
+      "default": 0,
+      "prefill": 50,
+      "minimum": 0
+    },
+    "maxTotalJobs": {
+      "title": "Max total jobs (run spend cap)",
+      "type": "integer",
+      "description": "Hard cap on billed results per run — 0 = no cap (default). Across **all** boards, not per company: once this many jobs have been returned the run stops keeping results and finishes. Use it to make the cost of a run predictable before you start it. The cap is always reported in the run's status message and in the SUMMARY record, so a short result set is never a silent truncation. With a monitor mode on, the cap counts the jobs actually returned (in *New jobs only*, the new ones), and jobs it held back are **not** recorded as seen — they come back on the next run instead of being lost.",
+      "editor": "number",
+      "default": 0,
+      "minimum": 0
+    },
+    "dedupe": {
+      "title": "Deduplicate",
+      "type": "boolean",
+      "description": "Drop postings with identical company + title + location (duplicates across pages, duplicate boards, or double-published roles).",
+      "default": true
+    },
+    "concurrency": {
+      "title": "Concurrency",
+      "type": "integer",
+      "description": "How many boards to fetch in parallel.",
+      "default": 10,
+      "minimum": 1,
+      "maximum": 25
+    },
+    "webhookUrl": {
+      "title": "Webhook URL",
+      "type": "string",
+      "description": "An **https** URL to POST the result to when the run finishes. Useful for a scheduled monitor: your endpoint is told what changed instead of your having to poll the dataset.\n\nThe body is JSON: `event` (`\"run.finished\"`), `summary` (the same object as the SUMMARY record — per-board counts, failures and hints), `newJobs` (up to the first 200 jobs this run returned; in **New jobs only** mode those are exactly the new ones), `removed` (up to the first 200 removal records, when **Report removed jobs** is on), `datasetId` and `runId` so you can fetch the rest.\n\nSent once, 15-second timeout, one retry. **A webhook failure never fails the run** — the results are already saved and charged, so a dead endpoint is logged as a warning and nothing more. Plain `http://` URLs are refused, because the body carries the whole result set.",
+      "editor": "textfield",
+      "nullable": true
+    },
+    "includeRaw": {
+      "title": "Include raw ATS payload",
+      "type": "boolean",
+      "description": "Attach the original ATS object under `raw` for fields the unified schema does not carry.",
+      "default": false
+    }
+  },
+  "required": [
+    "companies"
+  ]
+}

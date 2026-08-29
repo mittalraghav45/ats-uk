@@ -1,0 +1,16 @@
+{
+  "name": "ats-job-scraper",
+  "version": "1.4.0",
+  "type": "module",
+  "description": "Scrape jobs from 14 ATS job boards (Workday, Oracle HCM, Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Personio, Breezy, Rippling, Eightfold, Pinpoint, Teamtailor) into one clean, deduplicated JSON schema with monitor mode.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "apify": "^3.2.6"
+  }
+}

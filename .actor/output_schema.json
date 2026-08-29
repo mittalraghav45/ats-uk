@@ -1,0 +1,11 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Output schema of ATS Job Scraper",
+  "properties": {
+    "jobs": {
+      "type": "string",
+      "title": "Jobs",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?view=jobs"
+    }
+  }
+}
