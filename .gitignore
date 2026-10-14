@@ -1,3 +1,9 @@
 node_modules
 storage
 .DS_Store
+
+# UK local runtime
+.venv/
+__pycache__/
+results/
+results-expanded/

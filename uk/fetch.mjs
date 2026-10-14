@@ -1,0 +1,11 @@
+import {readFile,writeFile,mkdir,appendFile} from 'node:fs/promises';
+import {runScrape} from '../src/scrape.js';
+const config=JSON.parse(await readFile(process.argv[2]||'uk/config.json','utf8'));
+const out=process.argv[3]||'results';await mkdir(out,{recursive:true});
+const rows=[];
+const log={info:s=>{console.error(s)},warning:s=>{console.error(s)}};
+const summary=await runScrape(config,{pushJobs:async jobs=>rows.push(...jobs),log});
+await writeFile(`${out}/raw.json`,JSON.stringify(rows,null,2));
+await writeFile(`${out}/boards.json`,JSON.stringify(summary,null,2));
+console.error(JSON.stringify(summary));
+if(summary.failures===config.companies.length)process.exitCode=2;

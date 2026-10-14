@@ -1,0 +1,22 @@
+{
+  "companies": [
+    {
+      "ats": "oracle",
+      "id": "https://eism.fa.em2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/lcc",
+      "company": "Leicestershire County Council"
+    },
+    {
+      "ats": "oracle",
+      "id": "https://elxw.fa.em3.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001",
+      "company": "University of Edinburgh"
+    },
+    "greenhouse:stripe",
+    "ashby:openai",
+    "greenhouse:monzo",
+    "greenhouse:deliveroo"
+  ],
+  "includeDescription": true,
+  "query": "software,developer,frontend,full stack,backend,AI engineer,machine learning engineer",
+  "dedupe": true,
+  "concurrency": 2
+}

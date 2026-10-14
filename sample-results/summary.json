@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-10-14T00:05:24.104072+00:00",
+  "raw_count": 382,
+  "kept_count": 0,
+  "matched_count": 23,
+  "sponsorship_filtered_count": 23,
+  "rejected_count": 358,
+  "duplicate_count": 1,
+  "errors": [],
+  "sponsorship_counts": {
+    "available": 0,
+    "conditional": 0,
+    "not_available": 0,
+    "unknown": 23,
+    "conflicting": 0
+  }
+}

@@ -1,173 +1,51 @@
-# ATS Job Scraper — Workday, Oracle, Greenhouse, Lever & 10 more in one API
+# ATS UK Job Scraper
 
-Extract **job postings from 14 applicant tracking systems** — **Workday, Oracle HCM, Greenhouse, Lever, Ashby, Workable, SmartRecruiters, Recruitee, Personio, Breezy, Rippling, Eightfold, Pinpoint and Teamtailor** — in a single run, and get back **one unified, deduplicated JSON schema** with salary data, technology tags, seniority and ghost-job signals.
+Independent UK software-vacancy discovery project. No dependency on JobMatch Portal or the other UK scraper. See [UPSTREAM.md](UPSTREAM.md) and [original documentation](README.upstream.md).
 
-No cookies. No proxies. No LinkedIn. Every source is a **public, sanctioned job-board endpoint**, so runs are fast, stable and cheap, and the data is public corporate information (no personal data).
+## Run locally
 
-## Why this scraper instead of fourteen separate ones
-
-- **One schema for all fourteen ATSes.** `title`, `company`, `location`, `isRemote`, `employmentType`, `compensation`, `publishedAt`, `url`, `applyUrl` — identical field names whether the job lives on Workday or Ashby. Plus derived fields (`seniority`, `employmentTypeNorm`, `workplaceTypeNorm`) so you never post-process fourteen vocabularies.
-- **Enterprise boards included.** Workday and Oracle HCM are where most large-company jobs actually live, and most scrapers skip both. Boards are walked to the end, not to the first two pages.
-- **Monitor mode.** Schedule the actor and get **only the jobs that are new since the last run** — plus records for the ones that disappeared. Already-seen jobs are neither re-emitted nor re-billed.
-- **Ghost-job signals.** Every job carries `daysOpen` and `isStale`; monitor mode adds `firstSeenAt` and `repostedCount` — the role that keeps being reposted every two weeks is flagged, not hidden.
-- **Paste a careers URL and it just works.** `https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite`, `https://boards.greenhouse.io/stripe`, `https://acme.breezy.hr` — the right adapter is picked from the hostname.
-- **Salary you can filter on — and compare.** Lever, Ashby, Recruitee, Breezy and Pinpoint pay ranges map to one `compensation` object, plus `compensationAnnualUsd` (approximate annual USD equivalent) so a €6,000/month posting and a $150k/year posting are finally comparable. `hasSalary` and `salaryMin` filter *before* you are charged. Only employer-published pay — never estimates.
-- **Technology tags.** `technologies` extracts a curated dictionary of ~280 languages, frameworks, clouds and tools from each posting (`technologyFilter` to match). No LLM, no external calls — deterministic and free.
-- **Full-text filters that don't lie.** `descriptionQuery` / `descriptionExclude` search the posting body with documented boolean semantics (comma = OR, space = AND) — and when you filter on descriptions without wanting them in the dataset, they are fetched for the filter and stripped from the output.
-- **ATS auto-detection.** Don't know the ATS? Pass the bare slug (`stripe`) and the actor probes all twelve slug-addressable boards in parallel.
-
-## What you pay for — and what you don't
-
-Pay per job returned — a fraction of what typical job-data APIs charge per record. Five things are **never charged**:
-
-- **Duplicates.** Deduplication runs *before* billing, not after.
-- **Jobs your filters rejected.** Every filter — title, location, remote, date, salary, seniority, staleness — is applied before the meter.
-- **Jobs you already received.** In monitor mode, previously delivered jobs are not re-emitted and not re-billed. Removal records are free.
-- **Failed boards.** A board that errors returns no rows, so it costs nothing — and the run tells you which board failed and why.
-- **Anything past your cap.** `maxTotalJobs` is a hard spending cap per run; `maxJobsPerCompany` stops pagination early rather than fetching and discarding.
-
-No silent truncation: the `SUMMARY` record reports per board how many jobs were found, kept, filtered and deduplicated — and whether a cap was hit.
-
-## Monitor mode: new and removed jobs, on a schedule
-
-Set `monitorMode` and run the actor on a schedule (hourly, daily — your call):
-
-- **`new-only`** — the dataset contains only jobs that appeared since the last run. First run seeds the state; every later run is pure signal.
-- **`annotate`** — every job is emitted, enriched with `isNew`, `firstSeenAt` and `repostedCount`.
-- **`emitRemoved: true`** — jobs that vanished from a board are emitted as `{ status: "removed", ... }` records (never billed). A removal is your close-date signal.
-- **`repostedCount` and `repostedAt`** — how many times this exact role (company + title + location) has been taken down and reposted, and when it last came back. The classic ghost-job tell.
-- Removal records carry both `removedAt` and `closedAt` (same value, both names) — a close-date feed you can build history on.
-
-State is kept per `monitorId` in a named key-value store, so different schedules don't interfere. A failed board never marks its jobs as removed. **Keep the input stable between monitor runs**: changing filters or caps mid-stream makes jobs legitimately enter/leave your feed and shows up as new/removed churn.
-
-## What you get
-
-```json
-{
-  "id": "1f0e5b2a9c4d7e88",
-  "source": "ashby",
-  "company": "openai",
-  "companyName": "OpenAI",
-  "title": "Machine Learning Engineer",
-  "department": "Research",
-  "team": "Training",
-  "location": "San Francisco",
-  "locations": ["San Francisco", "New York"],
-  "isRemote": false,
-  "workplaceType": "Hybrid",
-  "workplaceTypeNorm": "hybrid",
-  "employmentType": "FullTime",
-  "employmentTypeNorm": "fulltime",
-  "seniority": null,
-  "compensation": { "min": 200000, "max": 300000, "currency": "USD", "interval": "1 YEAR", "summary": "$200K – $300K" },
-  "url": "https://jobs.ashbyhq.com/openai/...",
-  "applyUrl": "https://jobs.ashbyhq.com/openai/.../application",
-  "publishedAt": "2026-08-10T00:00:00.000Z",
-  "updatedAt": null,
-  "daysOpen": 17,
-  "isStale": false,
-  "countryCode": "US",
-  "language": "en",
-  "technologies": ["AWS", "PyTorch", "Python"],
-  "compensationAnnualUsd": { "min": 200000, "max": 300000 }
-}
+```sh
+python uk/run.py  # Python 3.10+ and Node.js 20+; no npm install required
 ```
 
-Monitor mode adds `isNew`, `firstSeenAt`, `repostedCount`. Toggle `includeDescription` for the full posting text, `includeRaw` for the untouched ATS payload. Derived fields are honest: `seniority` is `null` when the title gives no signal — never guessed.
+Run commands from this repository root. Set `--out PATH` for a separate result directory. Local execution has no paid API, Apify, proxy or hosting dependency. Do not run upstream `npm start` for the ATS project: the UK runner is deliberately separate.
 
-## Input in 10 seconds
+## Coverage
 
-```json
-{
-  "companies": [
-    "greenhouse:stripe",
-    "ashby:openai",
-    "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite",
-    "acme-corp"
-  ],
-  "query": "engineer",
-  "excludeQuery": "internship, staffing",
-  "descriptionQuery": "kubernetes, terraform",
-  "technologyFilter": "Python, Go",
-  "seniorityFilter": "senior, staff, principal",
-  "countryFilter": "US, NL",
-  "remoteOnly": true,
-  "maxDaysOpen": 30,
-  "salaryMin": 150000,
-  "maxTotalJobs": 500
-}
+Uses upstream runScrape and its 14 public ATS adapters directly. It does not import the Apify entry point or invoke paid actors. Initial boards: University of Edinburgh, Leicestershire County Council, Stripe, OpenAI, Monzo and Deliveroo. Edit companies in uk/config.json to add supported university, NHS or council career URLs. NHS Jobs/Trac, jobs.ac.uk and many council systems are not supported by these adapters; only the configured compatible university/council boards have direct coverage; NHS and DWP remain unsupported directly. Workday and Oracle require exact career URLs; do not guess slugs.
+
+## Outputs
+
+`results/jobs.json` and `results/jobs.csv` contain ONLY explicit/conditional sponsorship matches, with universities, councils, DWP and NHS prioritised. `review.json` contains unknown/refused/conflicting matches, which are not presented as sponsored opportunities. Fields: title, employer, location, salary, posting_date, application_url, matching_score, sponsorship_status, matched_skills, evidence_url and verbatim sponsorship_evidence. Missing salary/dates stay null; they are not fabricated. `summary.json` contains counts/errors; `rejected.json` explains exclusions. `raw.json` preserves input for review. ATS also writes `boards.json`. Logs: `run.log`.
+
+## Matching and safeguards
+
+UK location required. Prioritises JavaScript, TypeScript, React, Node.js, PHP, C#, ASP.NET, Blazor, Docker, basic Python and AI. Excludes senior/staff/principal/lead/management, level III+, internships/apprenticeships, mobile titles and explicit security clearance references. Experience exclusions are conservative heuristics, not complete natural-language understanding. UK city matching has an explicit non-UK country guard but ambiguous city names need review. Remote anywhere/EMEA is not sufficient evidence of UK eligibility.
+
+Score = 35 + 7 per JavaScript/TypeScript/React/Node.js/PHP match + 4 per C#/ASP.NET/Blazor/Docker match + 2 per Python/AI match + 10 for junior/associate/graduate title + 10 for explicit sponsorship (5 for conditional), capped at 100. It is a ranking heuristic, not a percentage chance of getting hired. Other software stacks can remain at lower scores.
+
+Sponsorship: `available`, `conditional`, `not_available`, `unknown`, or `conflicting`, derived only from the individual vacancy description returned by the board/ATS. An employer sponsor-register entry never establishes availability. Education/event sponsorship and export licences are ignored. Transfer-only support is conditional. Every result requires human review; a missing description cannot establish sponsorship or clearance suitability. These are vacancy extracts, not immigration eligibility decisions or direct employer confirmations.
+
+Deduplication uses normalised application URLs (tracking removed) plus employer/title/city. Different postings with the same employer/title/city can be conservatively collapsed. Deduplication is per run, not cross-run change tracking. JSON writes are atomic. Failures are logged; one source failure does not invalidate others. Empty results are not proof there are no vacancies. ATS source calls have bounded retry/backoff/timeouts; JobSpy searches have a 100-second process limit. No proxy bypass.
+
+## Tests
+
+```sh
+python -m unittest discover -s uk -p 'test_*.py'
 ```
 
-Three ways to name a board, mix them freely:
+ATS upstream tests additionally: `node --test tests/*.test.js` (no Apify install needed).
 
-| Form | Example | When |
-|---|---|---|
-| `ats:slug` | `greenhouse:stripe` | You know the ATS |
-| careers URL | `https://acme.breezy.hr` | You have the link |
-| bare slug | `stripe` | You know neither — all twelve slug-based boards are probed |
+## GitHub execution
 
-**Filters** — all applied before billing: `query` / `excludeQuery` (comma = OR, space = AND), `descriptionQuery` / `descriptionExclude`, `technologyFilter`, `seniorityFilter`, `locationFilter`, `countryFilter`, `languageFilter`, `remoteOnly`, `postedAfter`, `maxDaysOpen`, `hasSalary`, `salaryMin` (annual USD), `maxJobsPerCompany`, `maxTotalJobs`.
+`.github/workflows/uk-search.yml` is manual-only, with a 15-minute timeout and read-only repository permissions. Its hosted job is disabled on private repositories to avoid consuming billable private-repository execution. No schedule is enabled. Results are downloadable workflow artifacts retained for 7 days. Local execution remains available for either visibility. Do not enable paid runners or services without approval.
 
-## Supported ATS platforms
+## Initial delivery status
 
-| ATS | Target form | Salary | Notes |
-|---|---|---|---|
-| **Workday** | careers URL | – | Enterprise. Tenant IDs aren't guessable, so paste the board URL |
-| **Oracle HCM** | careers URL | – | Oracle Recruiting Cloud. Paste the `/sites/{SITE}/` URL |
-| **Greenhouse** | slug / URL | – | |
-| **Lever** | slug / URL | ✅ | |
-| **Ashby** | slug / URL | ✅ | Richest compensation data |
-| **Workable** | slug / URL | – | |
-| **SmartRecruiters** | slug / URL | – | Paginated |
-| **Recruitee** | slug / URL | ✅ | |
-| **Personio** | slug / URL | – | XML feed, strong in Europe |
-| **Breezy HR** | slug / URL | ✅ | Free-text ranges parsed |
-| **Rippling** | slug / URL | – | List view carries no dates |
-| **Eightfold** | slug / URL | – | Enterprise talent platform |
-| **Pinpoint** | slug / URL | ✅ | No posting dates in the public feed |
-| **Teamtailor** | slug / URL | – | RSS feed; 13,000+ companies, strong in Europe |
+Local builds and live samples are included. This repository is an independent upstream fork with UK additions. GitHub Actions supports manual runs; see VALIDATION.md for measured coverage and limitations.
 
-## Integrations
+Committed sample outputs are in `sample-results/`; each live run writes fresh outputs to ignored `results/`.
 
-The dataset is plain JSON on the Apify platform, so everything downstream just works: **n8n**, **Make**, **Zapier** (Apify app → dataset items), a built-in **`webhookUrl`** that POSTs the run's new/removed jobs straight to your endpoint when the run finishes (a webhook failure never fails the run), CSV/Excel export, and the **Apify MCP server** — AI agents can call this actor as a tool and query hiring data mid-conversation. Stable field names are designed for LLM pipelines.
+User skill levels: .NET/Blazor and Docker are portfolio/project skills; Python is basic knowledge and AI is currently being learned. Skill matches do not claim professional experience.
 
-## Common uses
-
-- **Job boards & aggregators** — fresh postings straight from the source, with stale roles filtered out and closed roles detected by monitor mode.
-- **Recruiting & sourcing** — monitor competitors' hiring by team, title and seniority; a new posting is a buying signal.
-- **Sales intelligence** — a company hiring "Head of Payments" is about to buy payments tooling. Schedule monitor mode and act on `isNew` the hour it appears.
-- **Salary benchmarking** — collect published ranges at scale from the five ATSes that expose them, filtered by floor.
-- **Labor-market research** — lifecycle data (`firstSeenAt`, removal records, `repostedCount`) instead of raw snapshots.
-
-## When a company returns zero jobs
-
-Every run writes a **`BOARD-STATUS`** record (JSON + CSV) to the key-value store: one row per company with found/kept/filtered/deduplicated counts, the error if the board failed, and a **hint** — a wrong slug tells you the URL forms to check, a fully-filtered board tells you which filter ate the jobs. No guessing, no "why is my dataset empty" mystery: the answer is in the run.
-
-## Coverage & freshness
-
-Data comes from each company's live job board at run time — if it's on the board, you get it, and closed roles are gone the moment the company closes them. All fourteen adapters are verified against live boards.
-
-Honest caveats:
-
-- Workday's list view dates jobs as "Posted 3 Days Ago", so `publishedAt` is approximated unless you enable `includeDescription`, which fetches the exact date per job.
-- Rippling and Pinpoint publish no posting dates on their public feeds, so `daysOpen` is `null` there (monitor mode's `firstSeenAt` still tracks them).
-- `isStale` is a **heuristic**, not a verdict: it means "open at least 60 days" (configurable via `staleAfterDays`). Some long-open roles are genuinely open.
-- `seniority` is inferred from the title only, and is `null` when there is no explicit signal.
-- `countryCode` and `language` are best-effort and honest: `null` when the location or text is ambiguous ("London" alone names no country), never guessed. Language detection needs the description text.
-- `compensationAnnualUsd` uses approximate exchange rates updated at release time — comparison-grade, not payroll-grade.
-
-## FAQ
-
-**How do I find a company's board slug?** It's in the careers-page URL: `boards.greenhouse.io/{slug}`, `jobs.lever.co/{slug}`, `jobs.ashbyhq.com/{slug}`, `apply.workable.com/{slug}`, `careers.smartrecruiters.com/{Company}`, `{slug}.recruitee.com`, `{slug}.jobs.personio.de`, `{slug}.breezy.hr`, `{slug}.eightfold.ai`, `{slug}.pinpointhq.com`, `{slug}.teamtailor.com`. Or just paste the whole URL — or the bare company name and let auto-detection try all twelve.
-
-**How do I scrape a Workday or Oracle board?** Paste the careers URL, e.g. `https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite` or `https://tenant.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/requisitions`. Their tenant IDs can't be derived from a company name, which is why a slug alone won't do.
-
-**How do I get only new jobs every day?** Set `monitorMode: "new-only"`, schedule the actor daily, and every run's dataset contains exactly the postings that appeared since the previous run. Add `emitRemoved: true` to also get close signals.
-
-**How do I filter out ghost jobs?** Set `maxDaysOpen` (e.g. `30`), and in monitor mode watch `repostedCount` — a role that keeps being reposted is the classic ghost pattern. Every job also carries `daysOpen` and `isStale` so you can decide for yourself.
-
-**Why do I get fewer jobs than the careers site shows?** The `SUMMARY` and `BOARD-STATUS` records account for every job: found vs kept vs filtered vs deduplicated, per board. If a number surprises you, the breakdown is already in your run — most often it's your own filters or the dedup doing exactly what they promise.
-
-**Does this scrape LinkedIn or Indeed?** No — deliberately. Those platforms block and litigate, and scraping them risks your account. This actor uses only the ATS boards companies publish on purpose. That's why it needs no proxies and doesn't break.
-
-**What happens when an ATS changes its API?** Each adapter is isolated and contract-tested against fixtures captured from live boards; fixes ship without touching the rest. Open an issue on the actor page and it gets picked up.
+DWP and other public-sector employers are not assumed to sponsor. Clearance exclusions still apply. Sector classification is a best-effort employer-name heuristic; direct vacancy evidence remains decisive. A valid empty sponsorship shortlist is expected when no vacancy explicitly supports sponsorship.

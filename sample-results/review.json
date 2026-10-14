@@ -1,0 +1,685 @@
+[
+  {
+    "title": "Applied AI Engineer, Codex",
+    "employer": "openai",
+    "location": "London, UK",
+    "salary": null,
+    "posting_date": "2026-09-11T07:44:32.667Z",
+    "application_url": "https://jobs.ashbyhq.com/openai/32425ea6-a64b-408d-ae54-38342b83c875/application",
+    "vacancy_url": "https://jobs.ashbyhq.com/openai/32425ea6-a64b-408d-ae54-38342b83c875",
+    "source": "ashby",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 53,
+    "matched_skills": [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://jobs.ashbyhq.com/openai/32425ea6-a64b-408d-ae54-38342b83c875",
+    "description_available": true,
+    "review_required": true,
+    "id": "bcf245fa607483fe4566"
+  },
+  {
+    "title": "Golang Backend Engineer, Financial Product Fraud",
+    "employer": "Deliveroo ",
+    "location": "London, England",
+    "salary": null,
+    "posting_date": "2026-09-29T08:52:49.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206659",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206659",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 44,
+    "matched_skills": [
+      "Node.js",
+      "Python"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206659",
+    "description_available": true,
+    "review_required": true,
+    "id": "2015b697549a5b5be9bf"
+  },
+  {
+    "title": "Full Stack Engineer, Money Movement",
+    "employer": "Stripe",
+    "location": "London",
+    "salary": null,
+    "posting_date": "2026-09-23T13:54:13.000Z",
+    "application_url": "https://stripe.com/jobs/search?gh_jid=8226261",
+    "vacancy_url": "https://stripe.com/jobs/search?gh_jid=8226261",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 42,
+    "matched_skills": [
+      "React"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://stripe.com/jobs/search?gh_jid=8226261",
+    "description_available": true,
+    "review_required": true,
+    "id": "cff7cf896f921d344721"
+  },
+  {
+    "title": "Software Engineer, New Grad",
+    "employer": "Stripe",
+    "location": "London",
+    "salary": null,
+    "posting_date": "2026-08-31T22:32:53.000Z",
+    "application_url": "https://stripe.com/jobs/search?gh_jid=8130930",
+    "vacancy_url": "https://stripe.com/jobs/search?gh_jid=8130930",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 42,
+    "matched_skills": [
+      "JavaScript"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://stripe.com/jobs/search?gh_jid=8130930",
+    "description_available": true,
+    "review_required": true,
+    "id": "2d65d4b0939534e3fdfd"
+  },
+  {
+    "title": "Software Engineer",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-09-18T13:48:07.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206351",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206351",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 42,
+    "matched_skills": [
+      "Node.js"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206351",
+    "description_available": true,
+    "review_required": true,
+    "id": "4b7c3524b0b1e9632d6a"
+  },
+  {
+    "title": "Software Engineer, Operational Excellence",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-10-13T10:12:26.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8271399",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8271399",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 42,
+    "matched_skills": [
+      "Node.js"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8271399",
+    "description_available": true,
+    "review_required": true,
+    "id": "87920b15f43e390bdf75"
+  },
+  {
+    "title": "Backend/API Engineer, Money as a Service (Product)",
+    "employer": "Stripe",
+    "location": "United Kingdom",
+    "salary": null,
+    "posting_date": "2025-11-03T10:28:42.000Z",
+    "application_url": "https://stripe.com/jobs/search?gh_jid=7369543",
+    "vacancy_url": "https://stripe.com/jobs/search?gh_jid=7369543",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 39,
+    "matched_skills": [
+      "Docker"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://stripe.com/jobs/search?gh_jid=7369543",
+    "description_available": true,
+    "review_required": true,
+    "id": "82d12a89982f3c176e01"
+  },
+  {
+    "title": "Software Engineer, Model Deployment- ChatGPT Engineering",
+    "employer": "openai",
+    "location": "London, UK",
+    "salary": {
+      "min": 194000,
+      "max": 280000,
+      "currency": "GBP",
+      "interval": "1 YEAR",
+      "summary": "£194K - £280K"
+    },
+    "posting_date": "2026-08-17T16:45:16.766Z",
+    "application_url": "https://jobs.ashbyhq.com/openai/f8b84ae5-743b-41c9-8432-02dff9993d6b/application",
+    "vacancy_url": "https://jobs.ashbyhq.com/openai/f8b84ae5-743b-41c9-8432-02dff9993d6b",
+    "source": "ashby",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 39,
+    "matched_skills": [
+      "Python",
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://jobs.ashbyhq.com/openai/f8b84ae5-743b-41c9-8432-02dff9993d6b",
+    "description_available": true,
+    "review_required": true,
+    "id": "84c500b5ef699554648e"
+  },
+  {
+    "title": "Applied AI Engineer, Quants",
+    "employer": "openai",
+    "location": "London, UK",
+    "salary": null,
+    "posting_date": "2026-09-18T11:40:06.085Z",
+    "application_url": "https://jobs.ashbyhq.com/openai/6d8facff-ce1d-4069-884b-dc1177cc1a06/application",
+    "vacancy_url": "https://jobs.ashbyhq.com/openai/6d8facff-ce1d-4069-884b-dc1177cc1a06",
+    "source": "ashby",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 39,
+    "matched_skills": [
+      "Python",
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://jobs.ashbyhq.com/openai/6d8facff-ce1d-4069-884b-dc1177cc1a06",
+    "description_available": true,
+    "review_required": true,
+    "id": "35fc5c368cb74f2c7f42"
+  },
+  {
+    "title": "Machine Learning Engineer II - Growth & Personalisation",
+    "employer": "Deliveroo ",
+    "location": "London, England",
+    "salary": null,
+    "posting_date": "2026-09-18T13:56:53.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8202399",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8202399",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 39,
+    "matched_skills": [
+      "Python",
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8202399",
+    "description_available": true,
+    "review_required": true,
+    "id": "c0140425a91c98af1aa4"
+  },
+  {
+    "title": "Software Engineer, Backend (BI Platform)",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-09-18T13:50:13.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206463",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206463",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 39,
+    "matched_skills": [
+      "Python",
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8206463",
+    "description_available": true,
+    "review_required": true,
+    "id": "938a586130d3a4e45c78"
+  },
+  {
+    "title": "Software Engineer, ChatGPT Infrastructure",
+    "employer": "openai",
+    "location": "London, UK",
+    "salary": {
+      "min": 194000,
+      "max": 280000,
+      "currency": "GBP",
+      "interval": "1 YEAR",
+      "summary": "£194K - £280K"
+    },
+    "posting_date": "2026-07-28T19:48:03.864Z",
+    "application_url": "https://jobs.ashbyhq.com/openai/621bb104-9daa-4c9e-949a-03d5730334e8/application",
+    "vacancy_url": "https://jobs.ashbyhq.com/openai/621bb104-9daa-4c9e-949a-03d5730334e8",
+    "source": "ashby",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://jobs.ashbyhq.com/openai/621bb104-9daa-4c9e-949a-03d5730334e8",
+    "description_available": true,
+    "review_required": true,
+    "id": "0f4b2104989abcd483bf"
+  },
+  {
+    "title": "Software Engineer, Cloud Infrastructure",
+    "employer": "openai",
+    "location": "London, UK",
+    "salary": null,
+    "posting_date": "2025-10-01T16:17:45.679Z",
+    "application_url": "https://jobs.ashbyhq.com/openai/29c2c171-fb63-4985-9ac5-229b2ff5ced6/application",
+    "vacancy_url": "https://jobs.ashbyhq.com/openai/29c2c171-fb63-4985-9ac5-229b2ff5ced6",
+    "source": "ashby",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://jobs.ashbyhq.com/openai/29c2c171-fb63-4985-9ac5-229b2ff5ced6",
+    "description_available": true,
+    "review_required": true,
+    "id": "ae15d738289ae25f5624"
+  },
+  {
+    "title": "Software Engineer, Platform Systems",
+    "employer": "openai",
+    "location": "London, UK",
+    "salary": null,
+    "posting_date": "2026-01-23T20:41:02.986Z",
+    "application_url": "https://jobs.ashbyhq.com/openai/4349f80b-3518-4e4d-b9eb-3e5e9b490cc7/application",
+    "vacancy_url": "https://jobs.ashbyhq.com/openai/4349f80b-3518-4e4d-b9eb-3e5e9b490cc7",
+    "source": "ashby",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://jobs.ashbyhq.com/openai/4349f80b-3518-4e4d-b9eb-3e5e9b490cc7",
+    "description_available": true,
+    "review_required": true,
+    "id": "c11b544350c75420475f"
+  },
+  {
+    "title": "Applied AI Engineer, Startups (Codex)",
+    "employer": "openai",
+    "location": "London, UK",
+    "salary": null,
+    "posting_date": "2026-09-24T13:55:16.572Z",
+    "application_url": "https://jobs.ashbyhq.com/openai/840963bb-7b1a-4021-91a0-40baf71b7e20/application",
+    "vacancy_url": "https://jobs.ashbyhq.com/openai/840963bb-7b1a-4021-91a0-40baf71b7e20",
+    "source": "ashby",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "AI"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://jobs.ashbyhq.com/openai/840963bb-7b1a-4021-91a0-40baf71b7e20",
+    "description_available": true,
+    "review_required": true,
+    "id": "17b1eb85af6f7ee62493"
+  },
+  {
+    "title": "Software Engineer II (Backend) - Home Page & Merchandising Platform",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-10-13T09:58:49.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8266845",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8266845",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "Python"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8266845",
+    "description_available": true,
+    "review_required": true,
+    "id": "6d61b1bee40560589e10"
+  },
+  {
+    "title": "Software Engineer II (Full-Stack) - Merchants",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-10-13T12:13:23.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8276256",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8276256",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "Python"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8276256",
+    "description_available": true,
+    "review_required": true,
+    "id": "b8753d21e7ae0b1e539e"
+  },
+  {
+    "title": "Software Engineer II, Full-Stack - New Verticals",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-10-02T17:24:03.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8249731",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8249731",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "Python"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8249731",
+    "description_available": true,
+    "review_required": true,
+    "id": "68126ceeec1171c29bda"
+  },
+  {
+    "title": "Software Engineer II (Full-Stack) - Storefront",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-09-25T11:44:11.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8230463",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8230463",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "Python"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8230463",
+    "description_available": true,
+    "review_required": true,
+    "id": "50dd1ead68114b5bffd8"
+  },
+  {
+    "title": "Software Engineer II - New Verticals",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-09-30T14:57:42.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8243100",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8243100",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "Python"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8243100",
+    "description_available": true,
+    "review_required": true,
+    "id": "b7d8a2733ac1bdd5b0d9"
+  },
+  {
+    "title": "Software Engineer, New Grad",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-09-18T13:55:54.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8202627",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8202627",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 37,
+    "matched_skills": [
+      "Python"
+    ],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8202627",
+    "description_available": true,
+    "review_required": true,
+    "id": "513e7d136998996a2c41"
+  },
+  {
+    "title": "Software Engineer, Money Movement",
+    "employer": "Stripe",
+    "location": "London",
+    "salary": null,
+    "posting_date": "2025-10-22T14:26:18.000Z",
+    "application_url": "https://stripe.com/jobs/search?gh_jid=7208537",
+    "vacancy_url": "https://stripe.com/jobs/search?gh_jid=7208537",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 35,
+    "matched_skills": [],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://stripe.com/jobs/search?gh_jid=7208537",
+    "description_available": true,
+    "review_required": true,
+    "id": "4ce121631a63adf9d22b"
+  },
+  {
+    "title": "Software Engineer II (Backend) - Subscriptions",
+    "employer": "Deliveroo ",
+    "location": "London, United Kingdom - Deliveroo",
+    "salary": null,
+    "posting_date": "2026-10-13T09:58:52.000Z",
+    "application_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8266851",
+    "vacancy_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8266851",
+    "source": "greenhouse",
+    "employer_sector": "other",
+    "skill_experience_notes": {
+      "C#": "portfolio/project",
+      "ASP.NET": "portfolio/project",
+      "Blazor": "portfolio/project",
+      "Docker": "portfolio/project",
+      "Python": "basic knowledge",
+      "AI": "learning"
+    },
+    "matching_score": 35,
+    "matched_skills": [],
+    "sponsorship_status": "unknown",
+    "sponsorship_evidence": [],
+    "evidence_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8266851",
+    "description_available": true,
+    "review_required": true,
+    "id": "938b98d45c7d6fcbd5d5"
+  }
+]
